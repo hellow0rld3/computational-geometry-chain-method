@@ -18,18 +18,26 @@ class Vertex:
         if self.y != other.y:
             return self.y < other.y
         return self.x < other.x
+    
+    @property
+    def total_in_weight(self):
+        return sum(e.weight for e in self.in_edges)
+
+    @property
+    def total_out_weight(self):
+        return sum(e.weight for e in self.out_edges)
 
 
 class Edge:
     """Reprezentuje skierowaną krawędź (zawsze w górę)."""
-    def __init__(self, start: Vertex, end: Vertex):
+    def __init__(self, start: Vertex, end: Vertex, weight = 0):
         # Automatyczne zapewnienie, że start jest "niżej" niż end
         if end < start:
             self.start, self.end = end, start
         else:
             self.start, self.end = start, end
             
-        self.weight = 0
+        self.weight = weight
         self.chains: List[int] = []
 
         self.start.out_edges.append(self)
@@ -84,11 +92,11 @@ class Graph:
         return v1_x * v2_y - v1_y * v2_x
 
     def get_sorted_out_edges(self, v: Vertex) -> List[Edge]:
-        """Sortuje krawędzie wychodzące od prawej do lewej (lub odwrotnie)."""
+        """Sortuje krawędzie wychodzące od lewej do prawej."""
         def compare(e1, e2):
             det = self._get_orientation(v, e1, e2)
-            if det > 0: return 1  # e2 jest bardziej "na lewo" niż e1
-            if det < 0: return -1 # e2 jest bardziej "na prawo" niż e1
+            if det > 0: return -1  # e2 jest bardziej "na prawo" niż e1
+            if det < 0: return 1 # e2 jest bardziej "na lewo" niż e1
             return 0
         
         return sorted(v.out_edges, key=cmp_to_key(compare))
