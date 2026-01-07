@@ -30,14 +30,18 @@ class Vertex:
 
 class Edge:
     """Reprezentuje skierowaną krawędź (zawsze w górę)."""
-    def __init__(self, start: Vertex, end: Vertex, weight = 0):
+    def __init__(self, start: Vertex, end: Vertex, left_poly: str = "Zewnetrzny", right_poly: str = "Zewnetrzny"):
         # Automatyczne zapewnienie, że start jest "niżej" niż end
         if end < start:
             self.start, self.end = end, start
+            self.left_poly = right_poly
+            self.right_poly = left_poly
         else:
             self.start, self.end = start, end
+            self.left_poly = left_poly
+            self.right_poly = right_poly
             
-        self.weight = weight
+        self.weight = 0
         self.chains: List[int] = []
 
         self.start.out_edges.append(self)
@@ -60,12 +64,18 @@ class Graph:
         self._next_id += 1
         return v
 
-    def add_edge(self, v1_id: int, v2_id: int) -> Optional[Edge]:
-        v1, v2 = self.vertices.get(v1_id), self.vertices.get(v2_id)
-        if v1 is not None and v2 is not None:
-            e = Edge(v1, v2)
+    def add_edge(self, v1_raw, v2_raw, left_poly: str = "Zewnetrzny", right_poly: str = "Zewnetrzny") -> Optional[Edge]:
+        # Jeśli to obiekt Vertex, bierzemy jego .id. Jeśli liczba, zostawiamy. (?)
+        u_id = v1_raw.id if hasattr(v1_raw, 'id') else v1_raw
+        v_id = v2_raw.id if hasattr(v2_raw, 'id') else v2_raw
+        
+        u, v = self.vertices.get(u_id), self.vertices.get(v_id)
+        if u is not None and v is not None:
+            e = Edge(u, v, left_poly, right_poly)
             self.edges.append(e)
             return e
+        else:
+            print(f"DEBUG: Nie znaleziono wierzchołków {u_id} lub {v_id} w grafie.")
         return None
 
     @staticmethod
@@ -95,8 +105,8 @@ class Graph:
         """Sortuje krawędzie wychodzące od lewej do prawej."""
         def compare(e1, e2):
             det = self._get_orientation(v, e1, e2)
-            if det > 0: return -1  # e2 jest bardziej "na prawo" niż e1
-            if det < 0: return 1 # e2 jest bardziej "na lewo" niż e1
+            if det > 0: return 1  # e2 jest bardziej "na prawo" niż e1
+            if det < 0: return -1 # e2 jest bardziej "na lewo" niż e1
             return 0
         
         return sorted(v.out_edges, key=cmp_to_key(compare))

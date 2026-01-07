@@ -1,0 +1,19 @@
+{
+    "vertices": [
+        {"id": 0, "x": 500, "y": 0}, {"id": 1, "x": 500, "y": 1000},
+        {"id": 2, "x": 100, "y": 200}, {"id": 3, "x": 200, "y": 300}, {"id": 4, "x": 100, "y": 400},
+        {"id": 5, "x": 200, "y": 500}, {"id": 6, "x": 100, "y": 600}, {"id": 7, "x": 200, "y": 700},
+        {"id": 8, "x": 800, "y": 200}, {"id": 9, "x": 700, "y": 300}, {"id": 10, "x": 800, "y": 400},
+        {"id": 11, "x": 700, "y": 500}, {"id": 12, "x": 800, "y": 600}, {"id": 13, "x": 700, "y": 700}
+    ],
+    "edges": [
+        {"v1": 0, "v2": 2, "lp": "Zewnetrzny", "rp": "Wewnetrzny"}, {"v1": 2, "v2": 3, "lp": "Zewnetrzny", "rp": "Wewnetrzny"},
+        {"v1": 3, "v2": 4, "lp": "Zewnetrzny", "rp": "Wewnetrzny"}, {"v1": 4, "v2": 5, "lp": "Zewnetrzny", "rp": "Wewnetrzny"},
+        {"v1": 5, "v2": 6, "lp": "Zewnetrzny", "rp": "Wewnetrzny"}, {"v1": 6, "v2": 7, "lp": "Zewnetrzny", "rp": "Wewnetrzny"},
+        {"v1": 7, "v2": 1, "lp": "Zewnetrzny", "rp": "Wewnetrzny"},
+        {"v1": 0, "v2": 8, "lp": "Wewnetrzny", "rp": "Zewnetrzny"}, {"v1": 8, "v2": 9, "lp": "Wewnetrzny", "rp": "Zewnetrzny"},
+        {"v1": 9, "v2": 10, "lp": "Wewnetrzny", "rp": "Zewnetrzny"}, {"v1": 10, "v2": 11, "lp": "Wewnetrzny", "rp": "Zewnetrzny"},
+        {"v1": 11, "v2": 12, "lp": "Wewnetrzny", "rp": "Zewnetrzny"}, {"v1": 12, "v2": 13, "lp": "Wewnetrzny", "rp": "Zewnetrzny"},
+        {"v1": 13, "v2": 1, "lp": "Wewnetrzny", "rp": "Zewnetrzny"}
+    ]
+}

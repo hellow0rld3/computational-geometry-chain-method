@@ -1,0 +1,17 @@
+{
+    "vertices": [
+        {"id": 0, "x": 500, "y": 100},
+        {"id": 1, "x": 500, "y": 600},
+        {"id": 2, "x": 100, "y": 800},
+        {"id": 3, "x": 900, "y": 800},
+        {"id": 4, "x": 500, "y": 950}
+    ],
+    "edges": [
+        {"v1": 0, "v2": 2, "lp": "Zewnetrzny", "rp": "Dol_Kielicha"},
+        {"v1": 1, "v2": 2, "lp": "Dol_Kielicha", "rp": "Gora_Kielicha"}, 
+        {"v1": 1, "v2": 3, "lp": "Gora_Kielicha", "rp": "Dol_Kielicha"},
+        {"v1": 0, "v2": 3, "lp": "Dol_Kielicha", "rp": "Zewnetrzny"},
+        {"v1": 2, "v2": 4, "lp": "Zewnetrzny", "rp": "Gora_Kielicha"},
+        {"v1": 3, "v2": 4, "lp": "Gora_Kielicha", "rp": "Zewnetrzny"}
+    ]
+}
